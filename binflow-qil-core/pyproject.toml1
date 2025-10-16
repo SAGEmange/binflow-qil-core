@@ -1,0 +1,31 @@
+[project]
+name = "binflow_qil_core"
+version = "0.1.0"
+description = "Binflow QIL Core — deterministic pattern engine and Data Pass exporter."
+authors = [
+    { name = "Peace Thabiwa", email = "kagisopeacethabs@gmail.com" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+
+# Minimal dependencies for the core engine
+dependencies = [
+]
+
+[project.urls]
+Homepage = "https://github.com/<your-username>/binflow-qil-core"
+Documentation = "https://huggingface.co/spaces/<your-username>/binflow-qil-spaces"
+Chatbot = "https://github.com/<your-username>/binflow-qil-chatbot"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["binflow_qil_core*"]
+exclude = ["tests*"]
