@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sageworks.ai/binflow-qil/schema/datapass.json",
+  "title": "Binflow Data Pass Schema",
+  "description": "Defines the structure of exported Data Pass files used by all Binflow QIL modules.",
+  "type": "object",
+  "properties": {
+    "snapshot": {
+      "type": "object",
+      "description": "Snapshot of the PatternWorld state at export time.",
+      "properties": {
+        "t": {
+          "type": "number",
+          "description": "Elapsed world time in seconds (float)."
+        },
+        "nodes": {
+          "type": "object",
+          "description": "Dictionary of nodes keyed by ID.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": ["F", "S", "L", "P", "T"],
+                "description": "Current Binflow state (Focus, Stress, Loop, Pause, Transition)."
+              },
+              "payload": {
+                "type": "object",
+                "description": "User-defined dynamic data for this node.",
+                "additionalProperties": true
+              }
+            },
+            "required": ["state", "payload"]
+          }
+        }
+      },
+      "required": ["t", "nodes"]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$",
+      "description": "SHA-256 hash of the snapshot content."
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp when this snapshot was created."
+    }
+  },
+  "required": ["snapshot", "sha256", "timestamp"]
+}
